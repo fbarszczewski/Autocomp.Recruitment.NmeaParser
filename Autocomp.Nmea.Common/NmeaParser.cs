@@ -65,7 +65,7 @@ namespace Autocomp.Nmea.Common
         {
             double number = 0;
 
-            double.TryParse(value, out number);
+            double.TryParse(value,NumberStyles.Any ,CultureInfo.InvariantCulture, out number);
 
             return number;
         }
