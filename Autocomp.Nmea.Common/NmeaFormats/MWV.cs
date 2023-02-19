@@ -8,9 +8,31 @@ namespace Autocomp.Nmea.Common.NmeaFormats
 {
     public class MWV
     {
-        public int Angle { get; private set; }
+        public double Angle { get; private set; }
         public string Reference { get; private set; }
-        public int Speed { get; private set; }
+        public double Speed { get; private set; }
         public string Units { get; private set; }
+
+        public MWV(string[] values)
+        {
+            if (values != null && values.Length == 5)
+            {
+                Angle = NmeaParser.StringToDouble(values[0]);
+
+                if (values[1] == "T")
+                    Reference = "Theoretical";
+                else if (values[1] == "R")
+                    Reference = "Relative";
+                else
+                    Reference = values[1];
+
+                Speed = NmeaParser.StringToDouble(values[2]);
+
+                Units = values[3];
+            }
+            else
+                throw new NotSupportedException("Invalid enter values.");
+
+        }
     }
 }
