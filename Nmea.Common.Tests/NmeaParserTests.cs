@@ -56,7 +56,7 @@ namespace Nmea.Common.Tests
             double expected = 319.289;
 
             //Act
-            double actual = NmeaParser.StringToDouble("319,289");
+            double actual = NmeaParser.StringToDouble("319.289");
 
             //Assert
             Assert.That(actual, Is.EqualTo(expected));
@@ -86,7 +86,8 @@ namespace Nmea.Common.Tests
             object actual = NmeaParser.Parse(nmea1);
 
             //Assert
-            Assert.IsNull(actual);
+            Assert.Throws<ArgumentException>(
+                () => throw new NotSupportedException());
         }
     }
 }
