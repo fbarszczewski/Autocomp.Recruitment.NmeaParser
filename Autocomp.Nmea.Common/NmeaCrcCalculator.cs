@@ -38,5 +38,23 @@ namespace Autocomp.Nmea.Common
 
             return crc;
         }
+        /// <summary>
+        /// Checks if nmea string is correct
+        /// </summary>
+        /// <param name="nmeaString"></param>
+        /// <returns></returns>
+        public static bool IsCorrect(string nmeaString)
+        {
+            //checks if string looks like nmea string & check sum can be checked
+            if (!nmeaString.Contains("$") || !nmeaString.Contains("*") || nmeaString.Length == nmeaString.LastIndexOf("*"))
+                return false;
+
+            //calculate checksum
+            int checksum = Convert.ToByte(nmeaString[nmeaString.IndexOf('$') + 1]);
+            for (int i = nmeaString.IndexOf('$') + 2; i < nmeaString.IndexOf('*'); i++)
+                checksum ^= Convert.ToByte(nmeaString[i]);
+            //return true if actual checksum match checksum provided in string 
+            return checksum.ToString("X2") == nmeaString.Substring(nmeaString.IndexOf("*") + 1);
+        }
     }
 }

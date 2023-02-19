@@ -22,10 +22,22 @@ namespace NmeaConsole
             //byte crc = NmeaCrcCalculator.CRC(nmea1);
             //Console.WriteLine(string.Join(" ",nmea1.Fields));
             //Console.WriteLine($"{crc.ToString("X02")} crc");
-
             bool correctInput = false;
+            string userInput = "";
 
 
+
+            while (!correctInput)
+            {
+                Console.WriteLine("Enter Nmea message (only GLL & MWV supported)");
+                userInput = Console.ReadLine();
+
+
+                if (NmeaCrcCalculator.IsCorrect(userInput))
+                    correctInput = true;
+                else
+                    Console.WriteLine("Incorrect input, try again..");
+            }
 
 
 
@@ -41,5 +53,7 @@ namespace NmeaConsole
                 Console.WriteLine($"{property.Name}: {property.GetValue(obj)}");
             }
         }
+
+
     }
 }
