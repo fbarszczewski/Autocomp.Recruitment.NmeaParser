@@ -58,11 +58,11 @@ namespace Autocomp.Nmea.Common
             return new TimeSpan(int.Parse(value.Substring(0, 2)), int.Parse(value.Substring(2, 2)), int.Parse(value.Substring(4, 2)));
         }
 
-        public static int StringToInt(string value)
+        public static double StringToDouble(string value)
         {
-            int number = 0;
+            double number = 0;
 
-            int.TryParse(value, out number);
+            double.TryParse(value, out number);
 
             return number;
         }
