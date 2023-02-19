@@ -35,5 +35,30 @@ namespace Nmea.Common.Tests
             Assert.That(actual, Is.EqualTo(expected));
         }
 
+        [Test]
+        public void StringToTimespan_ShouldReturnCorrectValue()
+        {
+            //Arrange
+            TimeSpan expected = new TimeSpan(3,41,38);
+
+            //Act
+            TimeSpan actual = NmeaParser.StringToTimeSpan("034138.00");
+
+            //Assert
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void StringToDouble_ShouldReturnCorrectValue()
+        {
+            //Arrange
+            double expected = 319.289;
+
+            //Act
+            double actual = NmeaParser.StringToDouble("319,289");
+
+            //Assert
+            Assert.That(actual, Is.EqualTo(expected));
+        }
     }
 }
