@@ -1,4 +1,5 @@
 ﻿using Autocomp.Nmea.Common;
+using Autocomp.Nmea.Common.NmeaFormats;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,6 +60,33 @@ namespace Nmea.Common.Tests
 
             //Assert
             Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void Parse_ShouldReturnGllClass()
+        {
+            //Arrange
+            NmeaMessage nmea1 = NmeaMessage.FromString("$GPGLL,3953.88008971,N,10506.75318910,W,034138.00,A,D*7A");
+            GLL expected = new GLL(nmea1.Fields);
+
+            //Act
+            object actual = NmeaParser.Parse(nmea1);
+
+            //Assert
+            Assert.IsInstanceOf<GLL>(actual);
+        }
+
+        [Test]
+        public void Parse_ShouldReturnNull()
+        {
+            //Arrange
+            NmeaMessage nmea1 = NmeaMessage.FromString("$xxxx,3953.88008971,N,10506.75318910,W,034138.00,A,D*7A");
+
+            //Act
+            object actual = NmeaParser.Parse(nmea1);
+
+            //Assert
+            Assert.IsNull(actual);
         }
     }
 }
