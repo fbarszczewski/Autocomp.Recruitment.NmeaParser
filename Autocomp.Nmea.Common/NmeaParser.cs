@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autocomp.Nmea.Common.NmeaFormats;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -12,7 +13,15 @@ namespace Autocomp.Nmea.Common
 
         public static object Parse(NmeaMessage msg)
         {
-            return null;
+            if (msg.Header.Contains("GLL"))
+                return new GLL(msg.Fields);
+
+            else if(msg.Header.Contains("MWV"))
+                return new MWV(msg.Fields);
+
+            else
+                return null;
+
         }
 
         public static bool TryParse(NmeaMessage msg, out object result)
