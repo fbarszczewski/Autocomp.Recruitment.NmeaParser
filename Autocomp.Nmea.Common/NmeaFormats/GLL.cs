@@ -20,6 +20,8 @@ namespace Autocomp.Nmea.Common.NmeaFormats
                 Longitude = NmeaParser.StringToLongitude(values[2], values[3]);
                 UtcTime = NmeaParser.StringToTimeSpan(values[4]);
             }
+            else
+                throw new NotSupportedException("Invalid enter values.");
         }
     }
 }
