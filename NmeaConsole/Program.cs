@@ -17,11 +17,17 @@ namespace NmeaConsole
 
             //$WIMWV,214.8,R,0.1,K,A*28
             //$WIMWV,320,R,15.0,M,A*0B
-            NmeaMessage nmea1 = NmeaMessage.FromString("$GPGLL,3953.88008971,N,10506.75318910,W,034138.00,A,D*7A");
+            //NmeaMessage nmea1 = NmeaMessage.FromString("$GPGLL,3953.88008971,N,10506.75318910,W,034138.00,A,D*7A");
 
-            byte crc = NmeaCrcCalculator.CRC(nmea1);
-            Console.WriteLine(string.Join(" ",nmea1.Fields));
-            Console.WriteLine($"{crc.ToString("X02")} crc");
+            //byte crc = NmeaCrcCalculator.CRC(nmea1);
+            //Console.WriteLine(string.Join(" ",nmea1.Fields));
+            //Console.WriteLine($"{crc.ToString("X02")} crc");
+
+            bool correctInput = false;
+
+
+
+
 
             Console.ReadLine();
         }

@@ -20,18 +20,10 @@ namespace Autocomp.Nmea.Common
                 return new MWV(msg.Fields);
 
             else
-                return null;
+                throw new NotSupportedException("Nmea type not supported");
 
         }
 
-        public static bool TryParse(NmeaMessage msg, out object result)
-        {
-
-
-
-            result= Parse(msg);
-            return true;
-        }
 
         public static double StringToLongitude(string value, string ewIndicator)
         {
