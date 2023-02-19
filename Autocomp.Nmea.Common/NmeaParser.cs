@@ -35,5 +35,10 @@ namespace Autocomp.Nmea.Common
         {
             return new TimeSpan();
         }
+
+        public static int StringToInt(string value)
+        {
+            return 0;
+        }
     }
 }
