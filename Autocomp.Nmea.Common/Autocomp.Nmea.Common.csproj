@@ -44,7 +44,10 @@
   <ItemGroup>
     <Compile Include="NmeaCrcCalculator.cs" />
     <Compile Include="NmeaFormat.cs" />
+    <Compile Include="NmeaFormats\GLL.cs" />
+    <Compile Include="NmeaFormats\MWV.cs" />
     <Compile Include="NmeaMessage.cs" />
+    <Compile Include="NmeaParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
