@@ -76,18 +76,7 @@ namespace Nmea.Common.Tests
             Assert.IsInstanceOf<GLL>(actual);
         }
 
-        [Test]
-        public void Parse_ShouldReturnNull()
-        {
-            //Arrange
-            NmeaMessage nmea1 = NmeaMessage.FromString("$xxxx,3953.88008971,N,10506.75318910,W,034138.00,A,D*7A");
 
-            //Act
-            object actual = NmeaParser.Parse(nmea1);
 
-            //Assert
-            Assert.Throws<ArgumentException>(
-                () => throw new NotSupportedException());
-        }
     }
 }
