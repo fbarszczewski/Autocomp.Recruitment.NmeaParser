@@ -56,7 +56,7 @@ namespace Autocomp.Nmea.Common
             if (nsIndicator == "S")
                 latitude *= -1;
 
-            return latitude;
+            return Math.Round(latitude, 8);
         }
 
         public static TimeSpan StringToTimeSpan(string value)

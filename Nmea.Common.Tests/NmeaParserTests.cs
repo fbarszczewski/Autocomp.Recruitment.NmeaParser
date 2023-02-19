@@ -22,5 +22,18 @@ namespace Nmea.Common.Tests
             Assert.That(actual, Is.EqualTo(expected));
         }
 
+        [Test]
+        public void StringToLatitude_ShouldReturnCorrectValue()
+        {
+            //Arrange
+            double expected = 39.8980015;
+
+            //Act
+            double actual = NmeaParser.StringToLatitude("3953.88008971", "N");
+
+            //Assert
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
     }
 }
