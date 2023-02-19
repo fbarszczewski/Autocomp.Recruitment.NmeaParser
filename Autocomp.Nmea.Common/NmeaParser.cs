@@ -42,7 +42,7 @@ namespace Autocomp.Nmea.Common
             if (ewIndicator == "W")
                 longitude *= -1;
 
-            return longitude;
+            return Math.Round(longitude,8);
         }
 
         public static double StringToLatitude(string value, string nsIndicator)

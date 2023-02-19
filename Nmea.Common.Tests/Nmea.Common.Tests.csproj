@@ -16,4 +16,8 @@
     <PackageReference Include="coverlet.collector" Version="3.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Autocomp.Nmea.Common\Autocomp.Nmea.Common.csproj" />
+  </ItemGroup>
+
 </Project>
