@@ -60,7 +60,11 @@ namespace Autocomp.Nmea.Common
 
         public static int StringToInt(string value)
         {
-            return 0;
+            int number = 0;
+
+            int.TryParse(value, out number);
+
+            return number;
         }
     }
 }
