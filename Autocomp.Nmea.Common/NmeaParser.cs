@@ -26,9 +26,11 @@ namespace Autocomp.Nmea.Common
 
         public static bool TryParse(NmeaMessage msg, out object result)
         {
-            result = null;
 
-            return false;
+
+
+            result= Parse(msg);
+            return true;
         }
 
         public static double StringToLongitude(string value, string ewIndicator)
