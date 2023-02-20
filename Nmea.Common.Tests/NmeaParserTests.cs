@@ -3,6 +3,7 @@ using Autocomp.Nmea.Common.NmeaFormats;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -85,6 +86,16 @@ namespace Nmea.Common.Tests
 
             //Assert
             Assert.IsInstanceOf<MWV>(actual);
+        }
+
+        [Test]
+        public void Parse_ShouldReturnExceptionWhenTypeNotRecognized()
+        {
+            //Arrange
+            NmeaMessage nmea1 = NmeaMessage.FromString("$WIXXX,320,R,15.0,M,A*0B");
+
+            // act/assert
+            Assert.Throws<NotSupportedException>(() => NmeaParser.Parse(nmea1));
         }
 
 
