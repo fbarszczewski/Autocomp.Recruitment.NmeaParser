@@ -11,22 +11,28 @@ namespace Autocomp.Nmea.Common
 
         public NmeaFormat Format { get; set; } = NmeaFormat.Default;
 
+        public string Checksum { get;}
+
         private static StringBuilder text = new StringBuilder();
 
-        public NmeaMessage(string header, string[] fields)
-            : this(header, fields, NmeaFormat.Default)
+        public NmeaMessage(string header, string[] fields, string checksum)
+            : this(header, fields, NmeaFormat.Default, checksum)
         {
         }
 
-        public NmeaMessage(string header, string[] fields, NmeaFormat format)
+        public NmeaMessage(string header, string[] fields, NmeaFormat format, string checksum)
         {
             this.Header = header;
             this.Fields = fields;
             this.Format = format;
+            this.Checksum = checksum;
         }
 
-        public NmeaMessage(string body, char separator)
+        public NmeaMessage(string body, char separator, char suffix)
         {
+            Checksum = body.Remove(0, body.IndexOf(suffix) + 1);
+            body = body.Remove(body.IndexOf(suffix));
+
             string[] parts = body.Split(new char[] { separator });
             if (parts.Length >= 1)
             {
@@ -40,7 +46,7 @@ namespace Autocomp.Nmea.Common
         }
 
         public NmeaMessage(string body)
-            : this(body, NmeaFormat.DefaultSeparator) { }
+            : this(body, NmeaFormat.DefaultSeparator, NmeaFormat.DefaultSuffix) { }
 
         public static NmeaMessage FromString(string msg)
         {
@@ -49,7 +55,7 @@ namespace Autocomp.Nmea.Common
 
         public static NmeaMessage FromString(string msg, NmeaFormat format)
         {
-            return new NmeaMessage(msg.TrimStart(format.Prefix).Remove(msg.IndexOf(format.Suffix) - 1));
+            return new NmeaMessage(msg.TrimStart(format.Prefix));
         }
 
         /// <summary>Tworzy łańcuch z komunikatem NMEA wg podanego formatu</summary>

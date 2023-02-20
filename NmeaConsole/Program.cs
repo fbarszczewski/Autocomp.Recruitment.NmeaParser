@@ -19,36 +19,43 @@ namespace NmeaConsole
 
             //$WIMWV,214.8,R,0.1,K,A*28
             //$WIMWV,320,R,15.0,M,A*0B
+            NmeaMessage nmea = NmeaMessage.FromString("$GPGLL,3953.88008971,N,10506.75318910,W,034138.00,A,D*7A");
 
-            bool correctInput = false;
-            string userInput = "";
-            NmeaMessage nmea;
-            object nmeaType;
+            Console.WriteLine(nmea.Header);
+            Console.WriteLine(nmea.Checksum);
 
-            while (true)
-            {
-                Console.WriteLine("Enter Nmea message (only GLL & MWV supported)");
+            Console.WriteLine(string.Join(" ",nmea.Fields));
+            Console.ReadLine();
 
-                //check user input
-                while (!correctInput)
-                {
-                    userInput = Console.ReadLine();
+            //bool correctInput = false;
+            //string userInput = "";
+            //NmeaMessage nmea;
+            //object nmeaType;
 
-                    if (NmeaCrcCalculator.IsCorrect(userInput))
-                        correctInput = true;
-                    else
-                        Console.WriteLine("Incorrect input, try again..");
-                }
-                //create nmea msg 
-                nmea = NmeaMessage.FromString(userInput);
-                //create nmea type
-                nmeaType = NmeaParser.Parse(nmea);
-                Display(nmeaType);
-                correctInput = false;
-                Console.ReadLine();
-            }
+            //while (true)
+            //{
+            //    Console.WriteLine("Enter Nmea message (only GLL & MWV supported)");
 
-            
+            //    //check user input
+            //    while (!correctInput)
+            //    {
+            //        userInput = Console.ReadLine();
+
+            //        if (NmeaCrcCalculator.IsCorrect(userInput))
+            //            correctInput = true;
+            //        else
+            //            Console.WriteLine("Incorrect input, try again..");
+            //    }
+            //    //create nmea msg 
+            //    nmea = NmeaMessage.FromString(userInput);
+            //    //create nmea type
+            //    nmeaType = NmeaParser.Parse(nmea);
+            //    Display(nmeaType);
+            //    correctInput = false;
+            //    Console.ReadLine();
+            //}
+
+
         }
         private static void Display(object obj)
         {
