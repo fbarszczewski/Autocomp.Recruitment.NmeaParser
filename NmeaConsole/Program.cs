@@ -42,9 +42,8 @@ namespace NmeaConsole
                     {
                         nmea = NmeaMessage.FromString(userInput);
                         //check nmea checksum
-                        if (NmeaCrcCalculator.CrcIsCorrect(nmea))
+                        if (NmeaParser.TryParse(nmea, out nmeaType))
                         {
-                            nmeaType = NmeaParser.Parse(nmea);
                             Display(nmeaType);
                             correctInput = true;
                         }
