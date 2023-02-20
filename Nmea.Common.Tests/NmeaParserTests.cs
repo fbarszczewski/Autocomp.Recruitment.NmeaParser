@@ -23,6 +23,18 @@ namespace Nmea.Common.Tests
             //Assert
             Assert.That(actual, Is.EqualTo(expected));
         }
+        [Test]
+        public void StringToLongitude_ShouldReturnNanWhenIncorrectData()
+        {
+            //Arrange
+            double expected = double.NaN;
+
+            //Act
+            double actual = NmeaParser.StringToLongitude("", "");
+
+            //Assert
+            Assert.That(actual, Is.EqualTo(expected));
+        }
 
         [Test]
         public void StringToLatitude_ShouldReturnCorrectValue()
@@ -32,6 +44,18 @@ namespace Nmea.Common.Tests
 
             //Act
             double actual = NmeaParser.StringToLatitude("3953.88008971", "N");
+
+            //Assert
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+        [Test]
+        public void StringToLatitude_ShouldReturnNanWhenIncorrectData()
+        {
+            //Arrange
+            double expected = double.NaN;
+
+            //Act
+            double actual = NmeaParser.StringToLatitude("", "");
 
             //Assert
             Assert.That(actual, Is.EqualTo(expected));
@@ -49,6 +73,18 @@ namespace Nmea.Common.Tests
             //Assert
             Assert.That(actual, Is.EqualTo(expected));
         }
+        [Test]
+        public void StringToTimespan_ShouldReturnZeroWhenIncorrectData()
+        {
+            //Arrange
+            TimeSpan expected = TimeSpan.Zero;
+
+            //Act
+            TimeSpan actual = NmeaParser.StringToTimeSpan("");
+
+            //Assert
+            Assert.That(actual, Is.EqualTo(expected));
+        }
 
         [Test]
         public void StringToDouble_ShouldReturnCorrectValue()
@@ -58,6 +94,18 @@ namespace Nmea.Common.Tests
 
             //Act
             double actual = NmeaParser.StringToDouble("319.289");
+
+            //Assert
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+        [Test]
+        public void StringToDouble_ShouldReturnZeroWhenIncorrectValue()
+        {
+            //Arrange
+            double expected = 0;
+
+            //Act
+            double actual = NmeaParser.StringToDouble("");
 
             //Assert
             Assert.That(actual, Is.EqualTo(expected));
@@ -97,6 +145,8 @@ namespace Nmea.Common.Tests
             // act/assert
             Assert.Throws<NotSupportedException>(() => NmeaParser.Parse(nmea1));
         }
+
+
 
 
     }
