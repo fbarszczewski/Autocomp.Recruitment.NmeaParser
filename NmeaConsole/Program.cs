@@ -26,6 +26,8 @@ namespace NmeaConsole
             NmeaMessage nmea;
             object nmeaType;
 
+
+
             while (true)
             {
                 Console.WriteLine("Enter Nmea message (only GLL & MWV supported)");

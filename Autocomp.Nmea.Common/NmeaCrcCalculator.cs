@@ -38,6 +38,12 @@ namespace Autocomp.Nmea.Common
 
             return crc;
         }
+
+        public static bool CrcIsCorrect(NmeaMessage msg)
+        {
+            return CRC(msg).ToString("X02") == msg.Checksum;
+        }
+
         /// <summary>
         /// Checks if nmea string is correct
         /// </summary>
