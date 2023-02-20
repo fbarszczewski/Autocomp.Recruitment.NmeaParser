@@ -24,6 +24,20 @@ namespace Autocomp.Nmea.Common
 
         }
 
+        public static bool TryParse(NmeaMessage msg, out object result)
+        {
+            if (NmeaCrcCalculator.CrcIsCorrect(msg))
+            {
+                result = Parse(msg);
+                return true;
+            }
+            else
+            {
+                result = null;
+                return false;
+            }
+        }
+
 
         public static double StringToLongitude(string value, string ewIndicator)
         {
