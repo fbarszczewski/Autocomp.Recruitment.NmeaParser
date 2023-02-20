@@ -8,10 +8,10 @@ namespace Autocomp.Nmea.Common.NmeaFormats
 {
     public class MWV
     {
-        public double Angle { get; private set; }
-        public string Reference { get; private set; }
-        public double Speed { get; private set; }
-        public string Units { get; private set; }
+        public double Angle { get; }
+        public string Reference { get; }
+        public double Speed { get;}
+        public string Units { get; }
 
         public MWV(string[] values)
         {

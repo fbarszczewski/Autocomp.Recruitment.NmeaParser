@@ -10,7 +10,7 @@ namespace Nmea.Common.Tests
     internal class NmeaMessageTests
     {
         [Test]
-        public void FromString_ShouldHaveCorrectChecksumValue()
+        public void FromString_ShouldReturnCorrectChecksumValue()
         {
             //Arrange
             string expected = "7A";
@@ -21,7 +21,7 @@ namespace Nmea.Common.Tests
             Assert.That(actual, Is.EqualTo(expected));
         }
         [Test]
-        public void FromString_ShouldHaveCorrectFieldsValue()
+        public void FromString_ShouldReturnCorrectFieldsValue()
         {
             //Arrange
             string[] expected = new string[] { "3953.88008971", "N", "10506.75318910", "W", "034138.00", "A", "D" };
@@ -32,7 +32,7 @@ namespace Nmea.Common.Tests
             Assert.That(actual, Is.EqualTo(expected));
         }
         [Test]
-        public void FromString_ShouldHaveCorrectHeaderValue()
+        public void FromString_ShouldReturnCorrectHeaderValue()
         {
             //Arrange
             string expected = "GPGLL";
