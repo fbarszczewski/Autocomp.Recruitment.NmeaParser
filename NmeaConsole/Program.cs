@@ -23,7 +23,7 @@ namespace NmeaConsole
 
             bool correctInput = false;
             string userInput = "";
-            NmeaMessage nmea;
+            NmeaMessage nmea=null;
             object nmeaType;
 
 
@@ -33,20 +33,32 @@ namespace NmeaConsole
                 Console.WriteLine("Enter Nmea message (only GLL & MWV supported)");
 
                 //check user input
+
                 while (!correctInput)
                 {
                     userInput = Console.ReadLine();
-
-                    if (NmeaCrcCalculator.IsCorrect(userInput))
-                        correctInput = true;
+                    //check if Nmea message can be created
+                    if (NmeaMessage.IsNmeaMessage(userInput))
+                    {
+                        nmea = NmeaMessage.FromString(userInput);
+                        //check nmea checksum
+                        if (NmeaCrcCalculator.CrcIsCorrect(nmea))
+                        {
+                            nmeaType = NmeaParser.Parse(nmea);
+                            Display(nmeaType);
+                            correctInput = true;
+                        }
+                        else
+                            Console.WriteLine("Nmea checksum is incorrect. Try again..");
+                    }
                     else
-                        Console.WriteLine("Incorrect input, try again..");
+                        Console.WriteLine("Input is not Nmea message. Try again..");
                 }
-                //create nmea msg 
-                nmea = NmeaMessage.FromString(userInput);
-                //create nmea type
-                nmeaType = NmeaParser.Parse(nmea);
-                Display(nmeaType);
+
+
+
+
+                Console.WriteLine("Click enter to continue.");
                 correctInput = false;
                 Console.ReadLine();
             }
