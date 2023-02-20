@@ -36,6 +36,28 @@ namespace Nmea.Common.Tests
             Assert.That(actual, Is.False);
 
         }
+        [Test]
+        public void CrcIsCorrect_ShouldReturnFalseWhenIncorrectCrc()
+        {
+            //Arrange
+            NmeaMessage nmea = NmeaMessage.FromString("$GNGLL,3150.788156,N,11711.922383,E,062735.00,A,A*0");
+            //act
+            bool actual = NmeaCrcCalculator.CrcIsCorrect(nmea);
+            //assert
+            Assert.That(actual, Is.False);
+
+        }
+        [Test]
+        public void CrcIsCorrect_ShouldReturnTrueWhenCorrectCrc()
+        {
+            //Arrange
+            NmeaMessage nmea = NmeaMessage.FromString("$GNGLL,3150.788156,N,11711.922383,E,062735.00,A,A*76");
+            //act
+            bool actual = NmeaCrcCalculator.CrcIsCorrect(nmea);
+            //assert
+            Assert.That(actual, Is.True);
+
+        }
 
     }
 }

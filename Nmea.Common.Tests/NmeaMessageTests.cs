@@ -42,5 +42,38 @@ namespace Nmea.Common.Tests
             //Assert
             Assert.That(actual, Is.EqualTo(expected));
         }
+        [Test]
+        public void IsNmeaMessage_ShouldReturnTrueWhenCorrectString()
+        {
+            //Arrange
+            bool expected = true;
+            //Act
+            bool actual = NmeaMessage.IsNmeaMessage("$GPGLL,3953.88008971,N,10506.75318910,W,034138.00,A,D*7A");
+
+            //Assert
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+        [Test]
+        public void IsNmeaMessage_ShouldReturnFalseWhenOneSignMissing()
+        {
+            //Arrange
+            bool expected = false;
+            //Act
+            bool actual = NmeaMessage.IsNmeaMessage("GPGLL,3953.88008971,N,10506.75318910,W,034138.00,A,D*7A");
+
+            //Assert
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+        [Test]
+        public void IsNmeaMessage_ShouldReturnFalseWhenEmpty()
+        {
+            //Arrange
+            bool expected = false;
+            //Act
+            bool actual = NmeaMessage.IsNmeaMessage("");
+
+            //Assert
+            Assert.That(actual, Is.EqualTo(expected));
+        }
     }
 }
