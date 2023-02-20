@@ -75,7 +75,19 @@ namespace Nmea.Common.Tests
             //Assert
             Assert.IsInstanceOf<GLL>(actual);
         }
+        [Test]
+        public void Parse_ShouldReturnMWVClass()
+        {
+            //Arrange
+            NmeaMessage nmea1 = NmeaMessage.FromString("$WIMWV,320,R,15.0,M,A*0B");
+            GLL expected = new GLL(nmea1.Fields);
 
+            //Act
+            object actual = NmeaParser.Parse(nmea1);
+
+            //Assert
+            Assert.IsInstanceOf<GLL>(actual);
+        }
 
 
     }
