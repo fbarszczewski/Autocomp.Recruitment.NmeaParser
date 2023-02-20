@@ -67,7 +67,6 @@ namespace Nmea.Common.Tests
         {
             //Arrange
             NmeaMessage nmea1 = NmeaMessage.FromString("$GPGLL,3953.88008971,N,10506.75318910,W,034138.00,A,D*7A");
-            GLL expected = new GLL(nmea1.Fields);
 
             //Act
             object actual = NmeaParser.Parse(nmea1);
@@ -80,13 +79,12 @@ namespace Nmea.Common.Tests
         {
             //Arrange
             NmeaMessage nmea1 = NmeaMessage.FromString("$WIMWV,320,R,15.0,M,A*0B");
-            GLL expected = new GLL(nmea1.Fields);
 
             //Act
             object actual = NmeaParser.Parse(nmea1);
 
             //Assert
-            Assert.IsInstanceOf<GLL>(actual);
+            Assert.IsInstanceOf<MWV>(actual);
         }
 
 
