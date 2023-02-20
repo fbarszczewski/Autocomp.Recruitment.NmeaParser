@@ -109,5 +109,10 @@ namespace Autocomp.Nmea.Common
         {
             return ToString(this, Format);
         }
+
+        public static bool IsNmeaMessage(string msg)
+        {
+            return msg.Contains("$")&&msg.Contains("*");
+        }
     }
 }
